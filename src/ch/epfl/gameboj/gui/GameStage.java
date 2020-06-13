@@ -22,7 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
-public final class GameStage extends Stage{
+public final class GameStage extends Stage {
     //CONSTANTS
     private static final Map<KeyCode, Joypad.Key> codeMap = createCodeMap();
     private static final Map<String, Joypad.Key> textMap = createTextMap();
@@ -40,7 +40,7 @@ public final class GameStage extends Stage{
         //instantiates local variables
         BorderPane pane = new BorderPane();
         ImageView iv = new  ImageView();    
-        File romFile = new File(path);
+        File romFile = new File(getClass().getResource(path));
          
          try {
              GameBoy gb = new GameBoy(Cartridge.ofFile(romFile));

@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 public final class GameBoyImageButton extends Button {
     //FIELDS
     private final String text;
-    private final ImageView imageView;
+    // private final ImageView imageView;
     
     //CONSTRUCTORS
     /**
@@ -23,14 +23,14 @@ public final class GameBoyImageButton extends Button {
     public GameBoyImageButton(String text,int width , int height) {
         this.text = text;
 
-        File file = new File("images/" + text + ".png");
+        File file = new File(getClass().getResource("images/" + text + ".png"));
 
         Image image = new Image(file.toURI().toString());
-        
         imageView = new ImageView(image);
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
         setGraphic(imageView);
+
     }
     
     //METHODS
