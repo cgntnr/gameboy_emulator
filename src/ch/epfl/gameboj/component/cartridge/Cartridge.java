@@ -1,15 +1,13 @@
 package ch.epfl.gameboj.component.cartridge;
 
-import static ch.epfl.gameboj.Preconditions.checkBits16;
-import static ch.epfl.gameboj.Preconditions.checkBits8;
+import ch.epfl.gameboj.component.Component;
+import ch.epfl.gameboj.component.memory.Rom;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ch.epfl.gameboj.component.Component;
-import ch.epfl.gameboj.component.memory.Rom;
+import static ch.epfl.gameboj.Preconditions.checkBits16;
+import static ch.epfl.gameboj.Preconditions.checkBits8;
 
 public final class Cartridge implements Component {
 
@@ -36,10 +34,11 @@ public final class Cartridge implements Component {
      * this method creates a new stream and stocks all the bytes from that stream 
      * in cartridgeArray then passing through right mbc(by checking mbc type) constructs Cartridge
      */
-    public static Cartridge ofFile(File romFile) throws IOException {
+    // public static Cartridge ofFile(File romFile) throws IOException {
+    public static Cartridge ofFile(InputStream stream) throws IOException {
 
         // stocks all the bytes of romFile into cartridgeArray then closes stream
-        InputStream stream = new FileInputStream(romFile);
+        // InputStream stream = new FileInputStream(romFile);
         byte[] cartridgeArray;
         cartridgeArray = stream.readAllBytes();                                           
         stream.close();

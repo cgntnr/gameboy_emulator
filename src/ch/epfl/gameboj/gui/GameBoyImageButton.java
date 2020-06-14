@@ -1,10 +1,11 @@
 package ch.epfl.gameboj.gui;
 
-import java.io.File;
-
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import java.io.InputStream;
+import java.util.Objects;
 
 /**
  *class of the button objects on the gameboy opening menu 
@@ -12,7 +13,7 @@ import javafx.scene.image.ImageView;
 public final class GameBoyImageButton extends Button {
     //FIELDS
     private final String text;
-    // private final ImageView imageView;
+    private final ImageView imageView;
     
     //CONSTRUCTORS
     /**
@@ -23,9 +24,11 @@ public final class GameBoyImageButton extends Button {
     public GameBoyImageButton(String text,int width , int height) {
         this.text = text;
 
-        File file = new File(getClass().getResource("images/" + text + ".png"));
+        // File file = new File("images/" + text + ".png");
+        InputStream is = getClass().getResourceAsStream("/images/" + text + ".png");
+        Objects.requireNonNull(is);
 
-        Image image = new Image(file.toURI().toString());
+        Image image = new Image(is);
         imageView = new ImageView(image);
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);

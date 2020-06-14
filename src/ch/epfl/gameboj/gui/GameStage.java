@@ -1,13 +1,5 @@
 package ch.epfl.gameboj.gui;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.imageio.ImageIO;
-
 import ch.epfl.gameboj.GameBoy;
 import ch.epfl.gameboj.component.Joypad;
 import ch.epfl.gameboj.component.Joypad.Key;
@@ -20,6 +12,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public final class GameStage extends Stage {
@@ -40,10 +40,11 @@ public final class GameStage extends Stage {
         //instantiates local variables
         BorderPane pane = new BorderPane();
         ImageView iv = new  ImageView();    
-        File romFile = new File(getClass().getResource(path));
+        // File romFile = new File(path);
+        InputStream stream = getClass().getResourceAsStream(path);
          
          try {
-             GameBoy gb = new GameBoy(Cartridge.ofFile(romFile));
+             GameBoy gb = new GameBoy(Cartridge.ofFile(stream));
              long start = System.nanoTime();      
              iv.setFitWidth(LcdController.LCD_WIDTH * 3);
              iv.setFitHeight(LcdController.LCD_HEIGHT * 3);
@@ -115,7 +116,7 @@ public final class GameStage extends Stage {
              timer.start();       
              Scene scene = new Scene(pane);
              setScene(scene);
-             setResizable(false);
+             // setResizable(false);
              setTitle("Gameboi");
              show();
              iv.requestFocus();

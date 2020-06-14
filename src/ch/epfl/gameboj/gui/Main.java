@@ -44,7 +44,8 @@ public class Main extends Application{
             @Override
             public void handle(ActionEvent ae) {
                 GameBoyImageButton b  = (GameBoyImageButton)ae.getSource();
-                GameStage game = new GameStage("games/" + b.text() + ".gb");
+                System.out.println(b.text());
+                GameStage game = new GameStage("/games/" + b.text() + ".gb");
                 label.setText("Current Game: " + b.text());           
             }
         }; 
